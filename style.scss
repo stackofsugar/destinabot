@@ -1,0 +1,40 @@
+$background-color: #0d1117;
+$muted-white: #9fa5aa;
+
+// Sticky footer
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+  border-top: 1px solid $muted-white;
+}
+
+@mixin poppins-regular {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin audiowide-regular {
+  font-family: 'Audiowide', sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  @include poppins-regular;
+  background-color: $background-color !important;
+}
+
+.logo {
+  @include audiowide-regular;
+  font-size: 3.5rem;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid $muted-white;
+}

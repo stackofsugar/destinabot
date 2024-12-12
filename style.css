@@ -1,0 +1,29 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+  border-top: 1px solid #9fa5aa;
+}
+
+body {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #0d1117 !important;
+}
+
+.logo {
+  font-family: "Audiowide", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3.5rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  border-bottom: 1px solid #9fa5aa;
+}/*# sourceMappingURL=style.css.map */
