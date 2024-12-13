@@ -19,27 +19,26 @@
       <div class="my-3">DestinaBot <i class="bi bi-robot"></i></div>
     </header>
     <main class="container my-4">
-      <div class="text-center">
+      <!-- <div class="text-center mb-4">
         <div class="btn-group" role="group">
           <button type="button" id="tab-demo-btn" class="tab-btn btn btn-outline-secondary" onclick="reloadTab(true)">Demo Destinations</button>
           <button type="button" id="tab-custom-btn" class="tab-btn btn btn-outline-warning" onclick="reloadTab(false)">Custom Destination</button>
         </div>
-      </div>
-      <div class="my-4">
+      </div> -->
+      <div class="mb-4">
         <div id="tab-demo">
           <div class="text-center">
-            <div class="mb-2">Choose an example data below</div>
+            <div class="mb-2">Choose Surabaya travel itineraries below</div>
             <div class="mb-3">
-              <button type="button" class="btn btn-outline-light mx-1" onclick="jsonToTable(demoData, 0)">Dataset 1</button>
-              <button type="button" class="btn btn-outline-light mx-1" onclick="">Dataset 2</button>
-              <button type="button" class="btn btn-outline-light mx-1" onclick="">Dataset 3</button>
+              <button type="button" class="btn btn-outline-light mx-1" onclick="jsonToTable(0)">Dataset 1</button>
+              <button type="button" class="btn btn-outline-light mx-1" onclick="jsonToTable(1)">Dataset 2</button>
+              <button type="button" class="btn btn-outline-light mx-1" onclick="jsonToTable(2)">Dataset 3</button>
             </div>
-            <!-- d-flex -->
-            <div id="top-table-wrapper" class="mb-2 collapse show-when-dataset-selected">
+            <div id="top-table-wrapper" class="mb-2 collapse show-when-dataset-selected text-start table-responsive">
               <table class="table table-hover w-auto mx-auto">
                 <thead>
                   <tr>
-                    <th>No</th>
+                    <th class="text-center">No</th>
                     <th>Destination Name</th>
                     <th>Open</th>
                     <th>Close</th>
@@ -51,7 +50,7 @@
               </table>
             </div>
             <div class="show-when-dataset-selected collapse">
-              <button type="button" class="btn btn-light mx-1">Submit</button>
+              <button type="button" class="btn btn-light mx-1" onclick="submitDatasetChoice()">Submit</button>
             </div>
           </div>
         </div>
@@ -60,7 +59,7 @@
         </div>
       </div>
       <div class="my-4 row">
-        <div class="col-12 col-lg-6 col-xl-5 col-xxl-4 mb-3 mb-lg-0">
+        <div class="col-12 col-xl-5 col-xxl-4 mb-3 mb-xl-0">
           <div class="accordion" id="advanced-settings-accordion">
             <div class="accordion-item">
               <h2 class="accordion-header">
@@ -84,11 +83,11 @@
                     </div>
                     <div class="mb-3">
                       <label for="no-generation" class="form-label small">No. of Generation (10-10000)</label>
-                      <input type="number" min="10" max="10000" value="75" class="form-control form-control-sm" id="no-generation" />
+                      <input type="number" min="10" max="10000" value="200" class="form-control form-control-sm" id="no-generation" />
                     </div>
                     <div class="mb-3">
                       <label for="pop-size" class="form-label small">Population Size (10-10000)</label>
-                      <input type="number" min="10" max="10000" value="20" class="form-control form-control-sm" id="pop-size" />
+                      <input type="number" min="10" max="10000" value="30" class="form-control form-control-sm" id="pop-size" />
                     </div>
                     <div class="mb-3">
                       <label for="mutation-prob" class="form-label small">Mutation Probability (0-1)</label>
@@ -105,14 +104,54 @@
           </div>
         </div>
         <div class="col">
-          <div class="fs-4">Input Data</div>
+          <div class="fs-4 text-center text-xl-start">Input Data</div>
           <div id="input-data-warning" class="text-danger-emphasis">Please choose an example data or input your custom data above.</div>
-          <div id="input-data"></div>
+          <div class="mt-2 show-when-run-ready collapse">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th class="text-center">No</th>
+                    <th>Destination Name</th>
+                    <th>Open</th>
+                    <th>Close</th>
+                    <th>Optimal Time</th>
+                    <th>Duration (mins)</th>
+                  </tr>
+                </thead>
+                <tbody id="bottom-primary-table"></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
       <div class="text-center my-4 show-when-run-ready collapse">
-        <button type="button" class="btn btn-light">Run Algorithm</button>
+        <button type="button" class="btn btn-light" onclick="runAlgorithm()">
+          Run Algorithm
+          <div class="spinner-border spinner-border-sm text-dark collapse" id="algo-spinner" role="status"></div>
+        </button>
       </div>
+      <div class="my-4 show-when-run-finished collapse">
+        <div class="fs-4 text-center">Best Itinerary</div>
+        <div class="my-2">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">No</th>
+                  <th>Destination Name</th>
+                  <th>Arrived</th>
+                  <th>Left</th>
+                  <th>Travel Time</th>
+                </tr>
+              </thead>
+              <tbody id="result-table"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="text-center">Fitness: <span id="final-fitness"></span></div>
+      </div>
+      <div class="my-4 show-when-run-started"></div>
     </main>
     <footer class="text-center py-2 small text-muted">
       <div>
